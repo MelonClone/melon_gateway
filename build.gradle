@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.helloapi.gateway'
+group = 'com.devgd.melon_gateway'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -50,3 +50,11 @@ dependencyManagement {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR5"
 	}
 }
+
+// For docker jar
+task copyJar(type: Copy) {
+	from 'build/libs'
+	into 'docker' 
+}
+
+build.finalizedBy(copyJar)
